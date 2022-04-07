@@ -1,11 +1,33 @@
-import './App.css';
+import React, { Component } from 'react';
+import NavBar from './Components/Navbar/NavBar';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>HELOO</h1>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      symbol: localStorage.getItem('symbol') || '$',
+    };
+  }
+
+  handleOnChange = (event) => {
+    const { value } = event.target;
+    this.setState({ symbol: value });
+    localStorage.setItem('symbol', value);
+  };
+
+  handleCurrencyOnLoad = () => {
+    const elem = document.querySelector('.select');
+    elem.value = localStorage.getItem('symbol');
+  };
+
+  render() {
+    window.addEventListener('load', this.handleCurrencyOnLoad);
+    const { symbol } = this.state;
+    return (
+      <>
+        <NavBar onChangeCurrency={this.handleOnChange} />
+      </>
+    );
+  }
 }
-
 export default App;
