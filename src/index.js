@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import store from './Redux/store/store';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -15,10 +16,9 @@ const client = new ApolloClient({
 const container = document.getElementById('root');
 const root = createRoot(container);
 
-
 root.render(
   <React.StrictMode>
-    <Provider store={"here will be the store"}>
+    <Provider store={store}>
       <ApolloProvider client={client}>
         <Router>
           <App />

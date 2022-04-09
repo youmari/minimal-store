@@ -1,11 +1,10 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import logger from 'redux-logger';
-import cartReducer from '../Cart/Cart';
+import cartReducer from '../Cart/cart'
 
 const reducers = combineReducers({
-  cart: cartReducer,
+  cartReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(logger));
-
 export default store;
