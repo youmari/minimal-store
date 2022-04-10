@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductListPage from './Pages/ProductListingPage.js/ProductListPage';
+import ProductListPage from './Pages/ProductListingPage/ProductListPage';
 
 class App extends Component {
   render() {
