@@ -1,0 +1,78 @@
+.items-container {
+  display: flex;
+
+}
+.color-radio-btns,
+.other-radio-btns {
+  position: relative;
+  width: 63px;
+  height: 45px;
+  border: 1px solid #1D1F22;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.color-radio-btns input,
+.other-radio-btns input {
+  display: none;
+}
+
+.color-radio-btns .checkmark {
+  width: calc(100% - 38px);
+  height: calc(100% - 22px);
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+  z-index: 20;
+}
+
+.color-radio-btns span {
+  content: "";
+  position: absolute;
+  right: -1px;
+  left: -1px;
+  bottom: 0;
+  top: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 200ms ease-in;
+}
+.color-radio-btns input:checked + .checkmark {
+  display: inline-block;
+  opacity: 1;
+}
+
+.color-radio-btns input:checked ~ span {
+  opacity: 1;
+}
+
+.other-radio-btns input:checked ~ .other-radio-btns {
+  background-color: #000;
+}
+
+.other-checkmark {
+  z-index: 5;
+}
+
+.other-checkmark::before {
+  content: "";
+  position: absolute;
+  right: -1px;
+  left: -1px;
+  bottom: 0;
+  top: 0;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 200ms ease-in;
+  background-color: #000;
+}
+.other-radio-btn:checked ~ .other-checkmark {
+  color: #fff;
+}
+
+.other-radio-btn:checked ~ .other-checkmark::before {
+  opacity: 1;
+}
