@@ -9,7 +9,6 @@ export const queryGenerator = (category = 'all') => {
             id
             name
             gallery
-            description
             inStock
             prices {
               currency {
@@ -17,19 +16,44 @@ export const queryGenerator = (category = 'all') => {
               }
               amount
             }
-            brand
             attributes {
               id
-              name
-              type
-              items {
-                value
-                id
-              }
             }
           }
         }
       }
   `;
   return GET_CATEGORY_PRODUCTS;
+};
+
+export const getProduct = (productId) => {
+  const GET_PRODUCT = gql`
+    query getProduct {
+      product(id: "${productId}") {
+        id
+        name
+        brand
+        gallery
+        inStock
+        description
+        prices {
+          currency {
+            symbol
+          }
+          amount
+        }
+        attributes {
+          id
+          name
+          type
+          items {
+            id
+            value
+          }
+        }
+      
+      }
+    }
+  `;
+  return GET_PRODUCT;
 };
