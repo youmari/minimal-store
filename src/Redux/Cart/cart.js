@@ -1,4 +1,5 @@
 import cache from '../..';
+
 const initialState = {
   cart: [],
 };
@@ -6,9 +7,10 @@ const initialState = {
 const ADD_TO_CART = 'MINIMAL_STORE/CART/ADD_TO_CART';
 const REMOVE_FROM_CART = 'MINIMAL_STORE/CART/REMOVE_FROM_CART';
 
-export const addProductToCart = (id) => ({
+export const addProductToCart = (id, attributes = []) => ({
   type: ADD_TO_CART,
   id,
+  attributes,
 });
 
 export const removeProductFromCart = (id) => ({
@@ -27,17 +29,27 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: !state.cart.length
-          ? [...state.cart, { ...productData, quantity: 1 }]
+          ? [
+              ...state.cart,
+              { ...productData, quantity: 1, attributes: action.attributes },
+            ]
           : isProductInCart
           ? [
               ...state.cart.map((product) => {
                 if (product.id !== productData.id) {
                   return product;
                 }
-                return { ...product, quantity: product.quantity + 1 };
+                return {
+                  ...product,
+                  quantity: product.quantity + 1,
+                  attributes: action.attributes,
+                };
               }),
             ]
-          : [...state.cart, { ...productData, quantity: 1 }],
+          : [
+              ...state.cart,
+              { ...productData, quantity: 1, attributes: action.attributes },
+            ],
       };
 
     default:
