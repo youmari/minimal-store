@@ -1,28 +1,38 @@
 import React, { Component } from 'react';
 import ReactHtmlParser from 'react-html-parser';
+import { connect } from 'react-redux';
+import { addProductToCart } from '../../Redux/Cart/cart';
 import Productattribute from '../ProductAttribute/ProductAttribute';
+
 class Productdetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
       attributes: [],
       checker: new Set(),
+      isThereAttributes: false,
     };
   }
 
   handleAttributeOnChange = (event) => {
+    const { checker } = this.state;
     const { name, value } = event.target;
-    if (!this.state.checker.has(name)) {
+    if (!checker.has(name)) {
       this.setState((state) => state.checker.add(name));
       this.setState({
-        attributes: [...this.state.attributes, { name: name, value: value }],
+        attributes: [...this.state.attributes, { name, value }],
       });
     } else {
-      this.setState((state) => {
-        return state.attributes.map((attribute) => {
+      this.setState((state) =>
+        state.attributes.map((attribute) => {
           if (attribute.name === name) {
             attribute.value = value;
           }
+        }),
+      );
+    }
+  };
+
   attributesNeeded = () => {
     const {
       product: { attributes },
@@ -30,6 +40,7 @@ class Productdetails extends Component {
     const { checker } = this.state;
     return attributes.filter((item) => !checker.has(item.name));
   };
+
   handleAddToCArtOnClick = () => {
     const {
       product,
@@ -48,14 +59,34 @@ class Productdetails extends Component {
   };
 
   render() {
-    const { product, symbol } = this.props;
+    const {
+      product: { brand, name, inStock, attributes, prices, description },
+      symbol,
+    } = this.props;
+    const { isThereAttributes } = this.state;
     return (
       <section>
         <div>
-          <h2>{product.brand}</h2>
-          <h3>{product.name}</h3>
+          <h2>{brand}</h2>
+          <h3>{name}</h3>
+          {!inStock && (
+            <strong style={{ color: 'red' }}>
+              This product is not avaiable at the moment
+            </strong>
+          )}
           <div>
-            {product?.attributes.map((attribute) => (
+            {isThereAttributes && (
+              <ul>
+                {this.attributesNeeded().map((item) => (
+                  <li key={item.id} style={{ color: 'red' }}>
+                    <strong>
+                      {item.name} is not selected, Please try to choose one
+                    </strong>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {attributes.map((attribute) => (
               <Productattribute
                 handleAttributeOnChange={this.handleAttributeOnChange}
                 key={attribute.id}
@@ -63,7 +94,7 @@ class Productdetails extends Component {
               />
             ))}
           </div>
-          {product.prices.map(
+          {prices.map(
             (price) =>
               price.currency.symbol === symbol && (
                 <div key={price.currency.symbol}>
@@ -75,14 +106,22 @@ class Productdetails extends Component {
                 </div>
               ),
           )}
-          <button className="add-to-cart-btn" type="button">
+          <button
+            className="add-to-cart-btn"
+            type="button"
+            onClick={this.handleAddToCArtOnClick}
+          >
             ADD TO CART
           </button>
-          <div>{ReactHtmlParser(product.description)}</div>
+          <div>{ReactHtmlParser(description)}</div>
         </div>
       </section>
     );
   }
 }
 
-export default Productdetails;
+const mapDispatchToProps = {
+  addProductToCart,
+};
+
+export default connect(null, mapDispatchToProps)(Productdetails);
