@@ -32,9 +32,9 @@ export default class ProductListPage extends Component {
     };
     return (
       <>
-        <NavBar onChangeCurrency={this.handleOnChange} />
+        <NavBar onChangeCurrency={this.handleOnChange} symbol={symbol} />
         <Routes>
-          <Route element={<ProductList symbol={symbol} />} path="all" />
+          <Route element={<ProductList symbol={symbol} />} path="/" />
           <Route
             element={<ProductList symbol={symbol} category="tech" />}
             path="tech"
@@ -43,6 +43,7 @@ export default class ProductListPage extends Component {
             element={<ProductList symbol={symbol} category="clothes" />}
             path="clothes"
           />
+          <Route element={<ParamsWrapper />} path="/:productId" />
           <Route element={<ParamsWrapper />} path=":category/:productId" />
         </Routes>
       </>
