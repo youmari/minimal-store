@@ -23,8 +23,13 @@ class Productdetails extends Component {
           if (attribute.name === name) {
             attribute.value = value;
           }
-        });
-      });
+  attributesNeeded = () => {
+    const {
+      product: { attributes },
+    } = this.props;
+    const { checker } = this.state;
+    return attributes.filter((item) => !checker.has(item.name));
+  };
     }
   };
 
