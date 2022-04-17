@@ -30,6 +30,20 @@ class Productdetails extends Component {
     const { checker } = this.state;
     return attributes.filter((item) => !checker.has(item.name));
   };
+  handleAddToCArtOnClick = () => {
+    const {
+      product,
+      product: { inStock, id },
+      addProductToCart,
+    } = this.props;
+    const { attributes } = this.state;
+    const numberOfAttributes = product.attributes.length;
+    if (numberOfAttributes !== attributes.length) {
+      this.setState((state) => (state.isThereAttributes = true));
+    } else {
+      if (!inStock) return;
+      this.setState((state) => (state.isThereAttributes = false));
+      addProductToCart(id, attributes);
     }
   };
 
