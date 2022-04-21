@@ -1,7 +1,7 @@
-.items-container {
+.items-container-attribute {
   display: flex;
-
 }
+
 .color-radio-btns,
 .other-radio-btns {
   position: relative;

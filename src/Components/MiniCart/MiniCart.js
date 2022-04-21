@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './MiniCart.style.css';
-class Minicart extends Component {
-  constructor(props) {
-    super(props);
-  }
 
+class Minicart extends Component {
   totalPrice = () => {
     const { cart, symbol } = this.props;
     let total = 0;
@@ -26,7 +23,9 @@ class Minicart extends Component {
         <section className="mini-cart">
           <h3 className="mini-cart-title">
             <strong>
-              My Bag. {cart.length}
+              My Bag.
+              {' '}
+              {cart.length}
               {cart.length === 1 ? ' item' : ' items'}
             </strong>
           </h3>
@@ -37,15 +36,14 @@ class Minicart extends Component {
                   <h4 className="brand-name">{item.brand}</h4>
                   <h5 className="item-name">{item.name}</h5>
                   {item.prices.map(
-                    (price) =>
-                      price.currency.symbol === symbol && (
-                        <div key={price.currency.symbol}>
-                          <p>
-                            {price.currency.symbol}
-                            {price.amount}
-                          </p>
-                        </div>
-                      ),
+                    (price) => price.currency.symbol === symbol && (
+                    <div key={price.currency.symbol}>
+                      <p>
+                        {price.currency.symbol}
+                        {price.amount}
+                      </p>
+                    </div>
+                    ),
                   )}
                   <div className="item-attributes-container">
                     {item.attributes.map((attribute) => (
@@ -88,7 +86,11 @@ class Minicart extends Component {
             </button>
           </div>
         </section>
-        <div onClick={() => setIsOpen(false)} className="overlay" />
+        <div
+          aria-hidden="true"
+          onClick={() => setIsOpen(false)}
+          className="overlay"
+        />
       </>
     );
   }
@@ -98,7 +100,7 @@ const mapStateToProps = (state) => {
   const {
     cartReducer: { cart },
   } = state;
-  return { cart: cart };
+  return { cart };
 };
 
 export default connect(mapStateToProps, null)(Minicart);

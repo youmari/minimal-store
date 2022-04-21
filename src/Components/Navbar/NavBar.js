@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import cartIcon from '../../Assets/cartIcon.svg';
 import Minicart from '../MiniCart/MiniCart';
+
 const NavBar = ({ onChangeCurrency, symbol }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -36,7 +37,7 @@ const NavBar = ({ onChangeCurrency, symbol }) => {
         className="cart-btn"
         type="button"
       >
-        <img src={cartIcon} />
+        <img src={cartIcon} alt="cart icon" />
       </button>
       {isOpen && <Minicart symbol={symbol} setIsOpen={setIsOpen} />}
     </>

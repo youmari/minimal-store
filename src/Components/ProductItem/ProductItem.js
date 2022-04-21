@@ -6,26 +6,49 @@ import { addProductToCart } from '../../Redux/Cart/cart';
 class ProductItem extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isThereAttributes: false,
+    };
   }
 
   handleAddProductToCart = (id) => {
-    const { addProductToCart } = this.props;
+    const {
+      addProductToCart,
+      product: { attributes },
+    } = this.props;
+    if (attributes.length) {
+      this.setState({ isThereAttributes: true });
+      return true;
+    }
     addProductToCart(id);
+    return true;
   };
 
   render() {
-    const { product, symbol } = this.props;
+    const {
+      product: {
+        id, name, gallery, prices,
+      },
+      symbol,
+    } = this.props;
+    const { isThereAttributes } = this.state;
     return (
-      <article key={product.id}>
-        <Link to={product.id}>
+      <article key={id}>
+        <Link to={id}>
           <img
-            style={{ width: 200 }} // I will remove it later
-            src={product.gallery[0]}
-            alt={product.name}
+            style={{ width: 200, display: 'block' }} // I will remove it later
+            src={gallery[0]}
+            alt={name}
           />
-          <h4>{product.name}</h4>
+          {isThereAttributes && (
+            <strong style={{ color: 'red' }}>
+              Please Click on the item and try to choose attributes then add it
+              to the cart !
+            </strong>
+          )}
+          <h4>{name}</h4>
         </Link>
-        {product.prices.map(
+        {prices.map(
           (price) => price.currency.symbol === symbol && (
           <strong key={price.currency.symbol}>
             {price.currency.symbol}
@@ -36,7 +59,7 @@ class ProductItem extends Component {
         <button
           type="button"
           onClick={() => {
-            this.handleAddProductToCart(product.id);
+            this.handleAddProductToCart(id);
           }}
         >
           add to cart

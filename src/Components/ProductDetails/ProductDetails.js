@@ -15,21 +15,19 @@ class Productdetails extends Component {
   }
 
   handleAttributeOnChange = (event) => {
-    const { checker } = this.state;
+    const { checker, attributes } = this.state;
     const { name, value } = event.target;
     if (!checker.has(name)) {
       this.setState((state) => state.checker.add(name));
       this.setState({
-        attributes: [...this.state.attributes, { name, value }],
+        attributes: [...attributes, { name, value }],
       });
     } else {
-      this.setState((state) =>
-        state.attributes.map((attribute) => {
-          if (attribute.name === name) {
-            attribute.value = value;
-          }
-        }),
-      );
+      this.setState((state) => state.attributes.forEach((attribute) => {
+        if (attribute.name === name) {
+          attribute.value = value;
+        }
+      }));
     }
   };
 
@@ -50,17 +48,19 @@ class Productdetails extends Component {
     const { attributes } = this.state;
     const numberOfAttributes = product.attributes.length;
     if (numberOfAttributes !== attributes.length) {
-      this.setState((state) => (state.isThereAttributes = true));
+      this.setState({ isThereAttributes: true });
     } else {
       if (!inStock) return;
-      this.setState((state) => (state.isThereAttributes = false));
+      this.setState({ isThereAttributes: false });
       addProductToCart(id, attributes);
     }
   };
 
   render() {
     const {
-      product: { brand, name, inStock, attributes, prices, description },
+      product: {
+        brand, name, inStock, attributes, prices, description,
+      },
       symbol,
     } = this.props;
     const { isThereAttributes } = this.state;
@@ -80,7 +80,9 @@ class Productdetails extends Component {
                 {this.attributesNeeded().map((item) => (
                   <li key={item.id} style={{ color: 'red' }}>
                     <strong>
-                      {item.name} is not selected, Please try to choose one
+                      {item.name}
+                      {' '}
+                      is not selected, Please try to choose one
                     </strong>
                   </li>
                 ))}
@@ -95,16 +97,15 @@ class Productdetails extends Component {
             ))}
           </div>
           {prices.map(
-            (price) =>
-              price.currency.symbol === symbol && (
-                <div key={price.currency.symbol}>
-                  <h4>Price:</h4>
-                  <h3>
-                    {price.currency.symbol}
-                    {price.amount}
-                  </h3>
-                </div>
-              ),
+            (price) => price.currency.symbol === symbol && (
+            <div key={price.currency.symbol}>
+              <h4>Price:</h4>
+              <h3>
+                {price.currency.symbol}
+                {price.amount}
+              </h3>
+            </div>
+            ),
           )}
           <button
             className="add-to-cart-btn"

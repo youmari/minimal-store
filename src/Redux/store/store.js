@@ -1,6 +1,6 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import logger from 'redux-logger';
-import cartReducer from '../Cart/cart'
+import cartReducer from '../Cart/cart';
 
 const reducers = combineReducers({
   cartReducer,

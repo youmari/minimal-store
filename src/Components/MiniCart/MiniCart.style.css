@@ -44,14 +44,16 @@
 
 .item-attributes-container {
   display: flex;
-  gap: 0.1em;
+  flex-wrap: wrap;
+  gap: 0.5em;
 }
 
 .mini-cart-attribute {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 24px;
+  padding: 0 0.3em;
+  width: max-content;
   height: 24px;
   border: solid 2px #1D1F22;
 }
@@ -82,6 +84,8 @@
 
 .item-picture {
   width: 105px;
+  height: min-content;
+  align-items: center;
 }
 
 .item-info {

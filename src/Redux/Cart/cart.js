@@ -20,7 +20,7 @@ export const removeProductFromCart = (id) => ({
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_TO_CART:
+    case ADD_TO_CART: {
       const productsObject = cache?.data?.data;
       const productData = productsObject[`Product:${action.id}`];
       const isProductInCart = state.cart.find(
@@ -30,11 +30,11 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cart: !state.cart.length
           ? [
-              ...state.cart,
-              { ...productData, quantity: 1, attributes: action.attributes },
-            ]
+            ...state.cart,
+            { ...productData, quantity: 1, attributes: action.attributes },
+          ]
           : isProductInCart
-          ? [
+            ? [
               ...state.cart.map((product) => {
                 if (product.id !== productData.id) {
                   return product;
@@ -46,11 +46,12 @@ const cartReducer = (state = initialState, action) => {
                 };
               }),
             ]
-          : [
+            : [
               ...state.cart,
               { ...productData, quantity: 1, attributes: action.attributes },
             ],
       };
+    }
 
     default:
       return state;
