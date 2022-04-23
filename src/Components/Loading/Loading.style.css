@@ -1,0 +1,65 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: #fff;
+}
+
+.span-container {
+  width: 100px;
+  height: 100px;
+  transform: translate(-50% -50%);
+  position: absolute;
+  top: 42%;
+  left: 45%;
+}
+
+.ball {
+  display: block;
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  animation: speed 2s infinite ease-in-out;
+}
+
+.one {
+  background: #5ECE7B;
+  animation-delay: 1.5s;
+}
+
+.two {
+  background: #1d1f22;
+  animation-delay: 1s;
+}
+
+.three {
+  background: #5ECE7B;
+  animation-delay: 0.5s;
+}
+
+.four {
+  background: #1d1f22;
+}
+
+@keyframes speed {
+  0% {
+    transform: translate(0%);
+    border-radius: 50%;
+  }
+
+  25% {
+    transform: translate(150%) scale(0.5);
+    border-radius: 0%;
+  }
+
+  50% {
+    transform: translate(150%, 150%);
+    border-radius: 50%;
+  }
+
+  75% {
+    transform: translate(0, 150%) scale(0.5);
+    border-radius: 0%;
+  }
+}
