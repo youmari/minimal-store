@@ -88,7 +88,7 @@ class Minicart extends Component {
         </section>
         <div
           aria-hidden="true"
-          onClick={() => setIsOpen(false)}
+          onClick={() => setIsOpen()}
           className="overlay"
         />
       </>
