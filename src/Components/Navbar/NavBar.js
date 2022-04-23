@@ -1,47 +1,81 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import cartIcon from '../../Assets/cartIcon.svg';
 import Minicart from '../MiniCart/MiniCart';
+import './NavBar.style.css';
+import logo from '../../Assets/logo.svg';
 
-const NavBar = ({ onChangeCurrency, symbol }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <>
-      <NavLink
-        to="/"
-        // className={({ isActive }) => (isActive ? activeLinkStyles : linkStyles)}
-      >
-        All
-      </NavLink>
-      <NavLink
-        to="/tech"
-        // className={({ isActive }) => (isActive ? activeLinkStyles : linkStyles)}
-      >
-        tech
-      </NavLink>
-      <NavLink
-        to="/clothes"
-        // className={({ isActive }) => (isActive ? activeLinkStyles : linkStyles)}
-      >
-        clothes
-      </NavLink>
-      <select className="select" onChange={onChangeCurrency}>
-        <option value="$">$ USD</option>
-        <option value="£">£ GBP</option>
-        <option value="¥">¥ JPY</option>
-        <option value="₽">₽ RUB</option>
-        <option value="A$">A$ AUD</option>
-      </select>
-      <button
-        onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
-        className="cart-btn"
-        type="button"
-      >
-        <img src={cartIcon} alt="cart icon" />
-      </button>
-      {isOpen && <Minicart symbol={symbol} setIsOpen={setIsOpen} />}
-    </>
-  );
-};
+class NavBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isOpen: false,
+    };
+  }
+
+  setIsOpen = () => {
+    this.setState({ isOpen: false });
+  };
+
+  render() {
+    const { isOpen } = this.state;
+    const { onChangeCurrency, symbol } = this.props;
+    return (
+      <header>
+        <nav>
+          <ul className="navigation-container">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? 'activeLinkStyles' : 'linkStyles')}
+              >
+                All
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/tech"
+                className={({ isActive }) => (isActive ? 'activeLinkStyles' : 'linkStyles')}
+              >
+                Tech
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/clothes"
+                className={({ isActive }) => (isActive ? 'activeLinkStyles' : 'linkStyles')}
+              >
+                Clothes
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+        <a className="logo" href="/">
+          <img src={logo} alt="logo" />
+        </a>
+        <div className="currencies-cart-and-container">
+          <select className="currencies-select" onChange={onChangeCurrency}>
+            <option value="$">$ USD</option>
+            <option value="£">£ GBP</option>
+            <option value="¥">¥ JPY</option>
+            <option value="₽">₽ RUB</option>
+            <option value="A$">A$ AUD</option>
+          </select>
+          <button
+            onClick={() => (isOpen
+              ? this.setState({ isOpen: false })
+              : this.setState({ isOpen: true }))}
+            className="cart-btn"
+            type="button"
+          >
+            <img src={cartIcon} alt="cart icon" />
+          </button>
+          {isOpen && <Minicart symbol={symbol} setIsOpen={this.setIsOpen} />}
+        </div>
+      </header>
+    );
+  }
+}
 
 export default NavBar;
