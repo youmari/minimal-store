@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addProductToCart } from '../../Redux/Cart/cart';
+import whiteCartIcon from '../../Assets/whiteCartIcon.svg';
+import './ProductItem.style.css';
 
 class ProductItem extends Component {
   constructor(props) {
@@ -26,43 +28,48 @@ class ProductItem extends Component {
 
   render() {
     const {
-      product: {
-        id, name, gallery, prices,
+      product:
+      {
+        id, name, gallery, prices, inStock,
       },
       symbol,
     } = this.props;
     const { isThereAttributes } = this.state;
     return (
-      <article key={id}>
-        <Link to={id}>
-          <img
-            style={{ width: 200, display: 'block' }} // I will remove it later
-            src={gallery[0]}
-            alt={name}
-          />
-          {isThereAttributes && (
-            <strong style={{ color: 'red' }}>
-              Please Click on the item and try to choose attributes then add it
-              to the cart !
+      <article className="product-item" key={id}>
+        {!inStock && <span className="out-of-stock">OUT OF STOCK</span>}
+        <div className={!inStock ? 'product-link product-overlay' : 'product-link'}>
+          <Link to={id}>
+            <img
+              style={{ width: 200, display: 'block' }} // I will remove it later
+              src={gallery[0]}
+              alt={name}
+            />
+            {isThereAttributes && (
+              <strong style={{ color: 'red' }}>
+                Please Click on the item and try to choose attributes then add
+                it to the cart !
+              </strong>
+            )}
+            <h4>{name}</h4>
+          </Link>
+          {prices.map(
+            (price) => price.currency.symbol === symbol && (
+            <strong key={price.currency.symbol}>
+              {price.currency.symbol}
+              {price.amount}
             </strong>
+            ),
           )}
-          <h4>{name}</h4>
-        </Link>
-        {prices.map(
-          (price) => price.currency.symbol === symbol && (
-          <strong key={price.currency.symbol}>
-            {price.currency.symbol}
-            {price.amount}
-          </strong>
-          ),
-        )}
+        </div>
         <button
           type="button"
+          className="main-product-btn"
           onClick={() => {
             this.handleAddProductToCart(id);
           }}
         >
-          add to cart
+          <img src={whiteCartIcon} alt="cart" />
         </button>
       </article>
     );
