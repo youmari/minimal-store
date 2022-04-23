@@ -19,7 +19,7 @@ export default class ProductListPage extends Component {
   };
 
   handleCurrencyOnLoad = () => {
-    const elem = document.querySelector('.select');
+    const elem = document.querySelector('.currencies-select');
     elem.value = localStorage.getItem('symbol');
   };
 
