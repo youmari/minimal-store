@@ -1,0 +1,73 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation-container {
+  display: flex;
+  gap: 20px;
+}
+
+.navigation-container {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav {
+  padding-left: 5%;
+}
+
+.linkStyles,
+.activeLinkStyles {
+  font-family: var(--Raleway);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  text-transform: uppercase;
+  color: var(--c-text);
+  text-decoration: none;
+  padding: 0 10px 20px 10px;
+}
+
+.activeLinkStyles {
+  font-weight: 600;
+  color: var(--c-primary);
+  border-bottom: 2px solid;
+}
+
+.logo {
+  padding-right: 7%;
+}
+
+.currencies-cart-and-container {
+  display: flex;
+  gap: 0 10px;
+  padding: 0 7%;
+}
+
+.cart-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.currencies-select:focus-visible {
+  outline: none;
+}
+
+.currencies-select {
+  width: 36px;
+  font-family: var(--Raleway);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  border: none;
+}
+
+.currencies-select option {
+  font-family: var(--Raleway);
+  font-weight: 500;
+  padding: 0.2em;
+  outline: none;
+}
