@@ -3,14 +3,20 @@ import ReactHtmlParser from 'react-html-parser';
 import { connect } from 'react-redux';
 import { addProductToCart } from '../../Redux/Cart/cart';
 import Productattribute from '../ProductAttribute/ProductAttribute';
+import './ProductDetails.style.css';
 
 class Productdetails extends Component {
   constructor(props) {
     super(props);
+    const {
+      product: { gallery },
+    } = this.props;
+
     this.state = {
       attributes: [],
       checker: new Set(),
       isThereAttributes: false,
+      defaultImage: gallery[0],
     };
   }
 
@@ -56,21 +62,43 @@ class Productdetails extends Component {
     }
   };
 
+  displayImageOnclick = (event) => {
+    const { src } = event.target;
+    this.setState({ defaultImage: src });
+  };
+
   render() {
     const {
       product: {
-        brand, name, inStock, attributes, prices, description,
+        brand,
+        name,
+        inStock,
+        attributes,
+        prices,
+        description,
+        gallery,
       },
       symbol,
     } = this.props;
-    const { isThereAttributes } = this.state;
+    const { isThereAttributes, defaultImage } = this.state;
     return (
-      <section>
-        <div>
-          <h2>{brand}</h2>
+      <section className="product-details-container">
+        <div className="product-img-conatiner">
+          {gallery.map((picture) => (
+            <img
+              key={picture}
+              src={picture}
+              onClick={(e) => this.displayImageOnclick(e)}
+              alt="product"
+            />
+          ))}
+        </div>
+        <img className="main-product-image" src={defaultImage} alt="product" />
+        <div className="product-details-info-conatiner">
+          <h2 className="product-brand">{brand}</h2>
           <h3>{name}</h3>
           {!inStock && (
-            <strong style={{ color: 'red' }}>
+            <strong>
               This product is not avaiable at the moment
             </strong>
           )}
@@ -78,7 +106,7 @@ class Productdetails extends Component {
             {isThereAttributes && (
               <ul>
                 {this.attributesNeeded().map((item) => (
-                  <li key={item.id} style={{ color: 'red' }}>
+                  <li key={item.id}>
                     <strong>
                       {item.name}
                       {' '}
@@ -100,10 +128,10 @@ class Productdetails extends Component {
             (price) => price.currency.symbol === symbol && (
             <div key={price.currency.symbol}>
               <h4>Price:</h4>
-              <h3>
+              <h5>
                 {price.currency.symbol}
                 {price.amount}
-              </h3>
+              </h5>
             </div>
             ),
           )}
