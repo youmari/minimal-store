@@ -24,8 +24,9 @@
     "import/no-named-as-default": 0,
      "react/prop-types": "off",
     "no-shadow": "off",
-    "no-param-reassign": "off"
-
+    "no-param-reassign": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off"
   },
   "ignorePatterns": [
     "dist/",
