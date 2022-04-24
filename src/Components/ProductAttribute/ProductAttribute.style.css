@@ -8,11 +8,11 @@
   width: 63px;
   height: 45px;
   border: 1px solid #1D1F22;
-  margin-left: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-right: 15px;
 }
 
 .color-radio-btns input,
@@ -33,7 +33,7 @@
   position: absolute;
   right: -1px;
   left: -1px;
-  bottom: 0;
+  bottom: -1px;
   top: 0;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
@@ -54,6 +54,10 @@
 }
 
 .other-checkmark {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
   z-index: 5;
 }
 
@@ -62,17 +66,32 @@
   position: absolute;
   right: -1px;
   left: -1px;
-  bottom: 0;
+  bottom: -1px;
   top: 0;
   z-index: -1;
   opacity: 0;
   transition: opacity 200ms ease-in;
   background-color: #000;
 }
+
 .other-radio-btn:checked ~ .other-checkmark {
   color: #fff;
 }
 
 .other-radio-btn:checked ~ .other-checkmark::before {
   opacity: 1;
+}
+
+.product-details-info-conatiner h4 {
+  font-family: var(--roboto);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.product-details-info-conatiner ul {
+  padding: 0;
+  margin: 0.2em 0 2em 0;
 }
