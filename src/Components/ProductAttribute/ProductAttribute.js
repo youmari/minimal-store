@@ -32,14 +32,13 @@ const Productattribute = ({ attribute, handleAttributeOnChange }) => (
           </label>
         ) : (
           <label
-            htmlFor={item.id}
             key={item.id}
             className="other-radio-btns"
           >
             <input
               className="other-radio-btn"
               type="radio"
-              id={item.id}
+              id={attribute.name}
               name={attribute.name}
               value={item.value}
               onChange={(event) => {
