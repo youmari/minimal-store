@@ -1,0 +1,145 @@
+.main-cart-page {
+  margin: 0 4%;
+}
+
+.main-cart-page h1 {
+  margin: 1.7em 0;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.Cart-item {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid gainsboro;
+  padding: 1em 0;
+}
+
+.btns-and-img-con {
+  display: flex;
+}
+
+.c-brand-name {
+  margin: 0.3em 0;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 27px;
+}
+
+.c-item-name {
+  margin: 0.5em 0;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 27px;
+}
+
+.c-price {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  margin: 0.3em 0;
+}
+
+.c-color-attribute {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--c-primary);
+}
+
+.Cart-item ul {
+  margin: 0;
+  padding: 0;
+}
+
+.Cart-item ul li {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 0.7em 0;
+}
+
+.c-attributes-container {
+  list-style-type: none;
+}
+
+.c-attributes-container h4 {
+  font-family: var(--roboto);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.c-other-attribute {
+  position: relative;
+  width: 63px;
+  height: 45px;
+  border: 1px solid #1D1F22;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.c-other-attribute span {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.c-btns-and-img-con {
+  display: flex;
+  gap: 1em;
+}
+
+.c-btns-and-img-con img {
+  width: 200px;
+}
+
+.c-btns-and-img-con div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c-btns-and-img-con div button {
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+}
+
+.c-btns-and-img-con div p {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 160%;
+}
+
+.c-tax-qty-total {
+  border-top: 1px solid gainsboro;
+}
+
+.c-tax-qty-total div {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.c-tax {
+  height: 15px;
+  margin-bottom: 1em;
+}
+
+.c-tax-qty-total div h5,
+.c-tax-qty-total div p {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0.7em 0;
+}
+
+.c-tax-qty-total div p {
+  font-weight: 700;
+}
