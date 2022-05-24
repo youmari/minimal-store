@@ -7,7 +7,16 @@ import store from './Redux/store/store';
 import App from './App';
 import './index.css';
 
-const cache = new InMemoryCache();
+const cache = new InMemoryCache({
+  typePolicies: {
+    AttributeSet: {
+      keyFields: false,
+    },
+    Attribute: {
+      keyFields: false,
+    },
+  },
+});
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
   cache,
