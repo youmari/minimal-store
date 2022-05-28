@@ -1,16 +1,33 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route, Routes, useParams } from 'react-router';
 import NavBar from '../../Components/Navbar/NavBar';
 import ProductList from '../../Components/ProductList/ProductList';
 import ProdctDescriptionPage from '../ProductDescriptionPage/ProdctDescriptionPage';
 
-export default class ProductListPage extends Component {
+class ProductListPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       symbol: localStorage.getItem('symbol') || '$',
     };
   }
+
+  totalPrice = () => {
+    const { cart } = this.props;
+    const { symbol } = this.state;
+    let total = 0;
+    let numberOfItems = 0;
+    cart.forEach((item) => {
+      numberOfItems += item.quantity;
+      item.prices.forEach((price) => {
+        if (price.currency.symbol === symbol) {
+          total += price.amount * item.quantity;
+        }
+      });
+    });
+    return [`${symbol}${total.toFixed(2)}`, numberOfItems];
+  };
 
   handleOnChange = (event) => {
     const { value } = event.target;
@@ -24,6 +41,7 @@ export default class ProductListPage extends Component {
   };
 
   render() {
+    const [totalPrice, numberOfItems] = this.totalPrice();
     window.addEventListener('load', this.handleCurrencyOnLoad);
     const { symbol } = this.state;
     const ParamsWrapper = () => {
@@ -32,7 +50,7 @@ export default class ProductListPage extends Component {
     };
     return (
       <>
-        <NavBar onChangeCurrency={this.handleOnChange} symbol={symbol} />
+        <NavBar numberOfItems={numberOfItems} totalPrice={totalPrice} onChangeCurrency={this.handleOnChange} symbol={symbol} />
         <Routes>
           <Route element={<ProductList symbol={symbol} />} path="/" />
           <Route
@@ -50,3 +68,14 @@ export default class ProductListPage extends Component {
     );
   }
 }
+
+
+const mapStateToProps = (state) => {
+  const {
+    cartReducer: { cart },
+  } = state;
+  return { cart };
+};
+
+export default connect(mapStateToProps, null)(ProductListPage);
+
