@@ -20,7 +20,9 @@ class NavBar extends Component {
 
   render() {
     const { isOpen } = this.state;
-    const { onChangeCurrency, symbol } = this.props;
+    const {
+      onChangeCurrency, symbol, numberOfItems, totalPrice,
+    } = this.props;
     return (
       <header>
         <nav>
@@ -70,8 +72,15 @@ class NavBar extends Component {
             type="button"
           >
             <img src={cartIcon} alt="cart icon" />
+            <span>{numberOfItems}</span>
           </button>
-          {isOpen && <Minicart symbol={symbol} setIsOpen={this.setIsOpen} />}
+          {isOpen && (
+          <Minicart
+            totalPrice={totalPrice}
+            symbol={symbol}
+            setIsOpen={this.setIsOpen}
+          />
+          )}
         </div>
       </header>
     );

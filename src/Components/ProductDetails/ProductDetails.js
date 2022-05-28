@@ -46,12 +46,12 @@ class Productdetails extends Component {
   };
 
   handleAddToCArtOnClick = () => {
+    const { attributes } = this.state;
     const {
       product,
       product: { inStock, id },
       addProductToCart,
     } = this.props;
-    const { attributes } = this.state;
     const numberOfAttributes = product.attributes.length;
     if (numberOfAttributes !== attributes.length) {
       this.setState({ isThereAttributes: true });
@@ -59,6 +59,7 @@ class Productdetails extends Component {
       if (!inStock) return;
       this.setState({ isThereAttributes: false });
       addProductToCart(id, attributes);
+      this.setState({ attributes: [], checker: new Set() });
     }
   };
 

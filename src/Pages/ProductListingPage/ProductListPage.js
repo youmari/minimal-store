@@ -50,7 +50,12 @@ class ProductListPage extends Component {
     };
     return (
       <>
-        <NavBar numberOfItems={numberOfItems} totalPrice={totalPrice} onChangeCurrency={this.handleOnChange} symbol={symbol} />
+        <NavBar
+          numberOfItems={numberOfItems}
+          totalPrice={totalPrice}
+          onChangeCurrency={this.handleOnChange}
+          symbol={symbol}
+        />
         <Routes>
           <Route element={<ProductList symbol={symbol} />} path="/" />
           <Route
@@ -69,7 +74,6 @@ class ProductListPage extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   const {
     cartReducer: { cart },
@@ -78,4 +82,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, null)(ProductListPage);
-

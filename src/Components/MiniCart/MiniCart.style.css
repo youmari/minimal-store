@@ -17,6 +17,8 @@
   background-color: #fff;
   width: 325px;
   z-index: 59;
+  max-height: 79vh;
+  overflow: auto;
 }
 
 .items-container {
