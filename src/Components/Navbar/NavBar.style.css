@@ -46,9 +46,22 @@ nav {
 }
 
 .cart-btn {
+  position: relative;
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.cart-btn span {
+  position: absolute;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #000;
+  border-radius: 50%;
+  color: #fff;
+  left: 17px;
+  top: -9px;
+  padding: 2px 7px;
 }
 
 .currencies-select:focus-visible {
