@@ -1,24 +1,14 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import './MiniCart.style.css';
 
 class Minicart extends Component {
-  totalPrice = () => {
-    const { cart, symbol } = this.props;
-    let total = 0;
-    cart.forEach((item) => {
-      item.prices.forEach((price) => {
-        if (price.currency.symbol === symbol) {
-          total += price.amount * item.quantity;
-        }
-      });
-    });
-    return `${symbol}${total.toFixed(2)}`;
-  };
-
   render() {
-    const { setIsOpen, cart, symbol } = this.props;
-    return (
+    const {
+      setIsOpen, cart, symbol, totalPrice,
+    } = this.props;
+    return ReactDOM.createPortal(
       <>
         <section className="mini-cart">
           <h3 className="mini-cart-title">
@@ -37,12 +27,12 @@ class Minicart extends Component {
                   <h5 className="item-name">{item.name}</h5>
                   {item.prices.map(
                     (price) => price.currency.symbol === symbol && (
-                    <div key={price.currency.symbol}>
-                      <p>
-                        {price.currency.symbol}
-                        {price.amount}
-                      </p>
-                    </div>
+                      <div key={price.currency.symbol}>
+                        <p>
+                          {price.currency.symbol}
+                          {price.amount}
+                        </p>
+                      </div>
                     ),
                   )}
                   <div className="item-attributes-container">
@@ -75,7 +65,7 @@ class Minicart extends Component {
           </div>
           <div className="total-container">
             <p>Total</p>
-            <p>{this.totalPrice()}</p>
+            <p>{totalPrice}</p>
           </div>
           <div className="mini-cart-action-btns-container">
             <button type="button" className="view-bag-btn">
@@ -91,7 +81,8 @@ class Minicart extends Component {
           onClick={() => setIsOpen()}
           className="overlay"
         />
-      </>
+      </>,
+      document.getElementById('portal'),
     );
   }
 }
