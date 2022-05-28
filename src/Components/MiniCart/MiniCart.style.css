@@ -28,6 +28,7 @@
 }
 
 .item {
+  position: relative;
   display: flex;
   padding: 0.3em 1em;
 }
@@ -110,6 +111,24 @@
   flex-basis: 100%;
   padding: 0.8em;
   cursor: pointer;
+}
+
+.mini-delete-icon {
+  position: absolute;
+  right: 5px;
+  background-color: rgb(24, 24, 24);
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+}
+
+.mini-delete-icon img {
+  width: 16px;
+  height: 20px;
+}
+
+.item:hover  .mini-delete-icon {
+  display: block;
 }
 
 .view-bag-btn {

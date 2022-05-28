@@ -16,9 +16,9 @@ export const addProductToCart = (id, attributes = []) => ({
   attributes,
 });
 
-export const removeProductFromCart = (id) => ({
+export const removeProductFromCart = (cartId) => ({
   type: REMOVE_FROM_CART,
-  id,
+  cartId,
 });
 
 export const incrementAnItem = (cartId) => ({
@@ -117,6 +117,13 @@ const cartReducer = (state = initialState, action) => {
               quantity: product.quantity - 1,
             };
           }),
+        ],
+      };
+    case REMOVE_FROM_CART:
+      return {
+        ...state,
+        cart: [
+          ...state.cart.filter((product) => product.cartId !== action.cartId),
         ],
       };
     default:

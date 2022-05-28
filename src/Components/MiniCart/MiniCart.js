@@ -2,12 +2,23 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import './MiniCart.style.css';
-import { incrementAnItem, decrementAnItem } from '../../Redux/Cart/cart';
+import {
+  incrementAnItem,
+  decrementAnItem,
+  removeProductFromCart,
+} from '../../Redux/Cart/cart';
+import delIcon from '../../Assets/delIcon.png';
 
 class Minicart extends Component {
   render() {
     const {
-      setIsOpen, cart, symbol, totalPrice, incrementAnItem, decrementAnItem,
+      setIsOpen,
+      cart,
+      symbol,
+      totalPrice,
+      incrementAnItem,
+      decrementAnItem,
+      removeProductFromCart,
     } = this.props;
     return ReactDOM.createPortal(
       <>
@@ -69,6 +80,13 @@ class Minicart extends Component {
                   src={item.gallery[0]}
                   alt={item.name}
                 />
+                <button
+                  className="mini-delete-icon"
+                  type="button"
+                  onClick={() => removeProductFromCart(item.cartId)}
+                >
+                  <img src={delIcon} alt="delete icon" />
+                </button>
               </article>
             ))}
           </div>
@@ -106,6 +124,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   incrementAnItem,
   decrementAnItem,
+  removeProductFromCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Minicart);
