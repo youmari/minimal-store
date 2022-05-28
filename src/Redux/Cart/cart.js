@@ -6,6 +6,8 @@ const initialState = {
 let num = 0;
 
 const ADD_TO_CART = 'MINIMAL_STORE/CART/ADD_TO_CART';
+const INCREMENT_AN_ITEM = 'MINIMAL_STORE/CART/INCREMENT_AN_ITEM';
+const DECREMENT_AN_ITEM = 'MINIMAL_STORE/CART/DECREMENT_AN_ITEM';
 const REMOVE_FROM_CART = 'MINIMAL_STORE/CART/REMOVE_FROM_CART';
 
 export const addProductToCart = (id, attributes = []) => ({
@@ -17,6 +19,16 @@ export const addProductToCart = (id, attributes = []) => ({
 export const removeProductFromCart = (id) => ({
   type: REMOVE_FROM_CART,
   id,
+});
+
+export const incrementAnItem = (cartId) => ({
+  type: INCREMENT_AN_ITEM,
+  cartId,
+});
+
+export const decrementAnItem = (cartId) => ({
+  type: DECREMENT_AN_ITEM,
+  cartId,
 });
 
 const cartReducer = (state = initialState, action) => {
@@ -49,14 +61,17 @@ const cartReducer = (state = initialState, action) => {
         if (mt === attributeChecker.size) {
           return {
             ...state,
-            cart: [...state.cart.map((product) => {
-              if (cartId !== product.cartId) {
-                return product;
-              }
-              return {
-                ...product, quantity: product.quantity + 1,
-              };
-            })],
+            cart: [
+              ...state.cart.map((product) => {
+                if (cartId !== product.cartId) {
+                  return product;
+                }
+                return {
+                  ...product,
+                  quantity: product.quantity + 1,
+                };
+              }),
+            ],
           };
         }
       }
@@ -73,6 +88,37 @@ const cartReducer = (state = initialState, action) => {
         ],
       };
     }
+    case INCREMENT_AN_ITEM:
+      return {
+        ...state,
+        cart: [
+          ...state.cart.map((product) => {
+            if (action.cartId !== product.cartId) {
+              return product;
+            }
+            return {
+              ...product,
+              quantity: product.quantity + 1,
+            };
+          }),
+        ],
+      };
+    case DECREMENT_AN_ITEM:
+      return {
+        ...state,
+        cart: [
+          ...state.cart.map((product) => {
+            if (action.cartId !== product.cartId) {
+              return product;
+            }
+            if (product.quantity === 1) return product;
+            return {
+              ...product,
+              quantity: product.quantity - 1,
+            };
+          }),
+        ],
+      };
     default:
       return state;
   }

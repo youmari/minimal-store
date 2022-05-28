@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import './MiniCart.style.css';
+import { incrementAnItem, decrementAnItem } from '../../Redux/Cart/cart';
 
 class Minicart extends Component {
   render() {
     const {
-      setIsOpen, cart, symbol, totalPrice,
+      setIsOpen, cart, symbol, totalPrice, incrementAnItem, decrementAnItem,
     } = this.props;
     return ReactDOM.createPortal(
       <>
@@ -27,12 +28,12 @@ class Minicart extends Component {
                   <h5 className="item-name">{item.name}</h5>
                   {item.prices.map(
                     (price) => price.currency.symbol === symbol && (
-                      <div key={price.currency.symbol}>
-                        <p>
-                          {price.currency.symbol}
-                          {price.amount}
-                        </p>
-                      </div>
+                    <div key={price.currency.symbol}>
+                      <p>
+                        {price.currency.symbol}
+                        {price.amount}
+                      </p>
+                    </div>
                     ),
                   )}
                   <div className="item-attributes-container">
@@ -47,11 +48,19 @@ class Minicart extends Component {
                   </div>
                 </div>
                 <div className="qty-bts-container">
-                  <button className="quantity-btn" type="button">
+                  <button
+                    className="quantity-btn"
+                    type="button"
+                    onClick={() => incrementAnItem(item.cartId)}
+                  >
                     +
                   </button>
                   <p>{item.quantity}</p>
-                  <button className="quantity-btn" type="button">
+                  <button
+                    className="quantity-btn"
+                    type="button"
+                    onClick={() => decrementAnItem(item.cartId)}
+                  >
                     -
                   </button>
                 </div>
@@ -94,4 +103,9 @@ const mapStateToProps = (state) => {
   return { cart };
 };
 
-export default connect(mapStateToProps, null)(Minicart);
+const mapDispatchToProps = {
+  incrementAnItem,
+  decrementAnItem,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Minicart);
