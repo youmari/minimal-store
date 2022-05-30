@@ -132,9 +132,15 @@
 }
 
 .view-bag-btn {
+  font-family: 'Raleway';
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 120%;
   border: 2px solid #1D1F22;
   color: #1D1F22;
   background-color: #fff;
+  text-decoration: none;
+  text-align: center;
 }
 
 .view-bag-btn:active {

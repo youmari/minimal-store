@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Routes, useParams } from 'react-router';
 import NavBar from '../../Components/Navbar/NavBar';
 import ProductList from '../../Components/ProductList/ProductList';
+import Cart from '../Cart/Cart';
 import ProdctDescriptionPage from '../ProductDescriptionPage/ProdctDescriptionPage';
 
 class ProductListPage extends Component {
@@ -41,6 +42,7 @@ class ProductListPage extends Component {
   };
 
   render() {
+    const { cart } = this.props;
     const [totalPrice, numberOfItems] = this.totalPrice();
     window.addEventListener('load', this.handleCurrencyOnLoad);
     const { symbol } = this.state;
@@ -68,6 +70,17 @@ class ProductListPage extends Component {
           />
           <Route element={<ParamsWrapper />} path="/:productId" />
           <Route element={<ParamsWrapper />} path=":category/:productId" />
+          <Route
+            element={(
+              <Cart
+                cart={cart}
+                symbol={symbol}
+                numberOfItems={numberOfItems}
+                totalPrice={totalPrice}
+              />
+            )}
+            path="/Cart"
+          />
         </Routes>
       </>
     );

@@ -71,7 +71,7 @@
   margin: 0;
 }
 
-.c-other-attribute {
+/* .c-other-attribute {
   position: relative;
   width: 63px;
   height: 45px;
@@ -88,7 +88,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 18px;
-}
+} */
 
 .c-btns-and-img-con {
   display: flex;
@@ -129,15 +129,14 @@
 }
 
 .c-tax {
-  height: 15px;
-  margin-bottom: 1em;
+  margin-top: 2em;
 }
 
 .c-tax-qty-total div h5,
 .c-tax-qty-total div p {
   font-size: 24px;
   font-weight: 400;
-  margin: 0.7em 0;
+  margin: 0.3em 0;
 }
 
 .c-tax-qty-total div p {

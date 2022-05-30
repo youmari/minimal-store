@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import './MiniCart.style.css';
@@ -95,9 +96,9 @@ class Minicart extends Component {
             <p>{totalPrice}</p>
           </div>
           <div className="mini-cart-action-btns-container">
-            <button type="button" className="view-bag-btn">
+            <Link to="/Cart" type="button" onClick={setIsOpen} className="view-bag-btn">
               VIEW BAG
-            </button>
+            </Link>
             <button type="button" className="checkout-btn">
               CHECKOUT
             </button>
@@ -105,7 +106,7 @@ class Minicart extends Component {
         </section>
         <div
           aria-hidden="true"
-          onClick={() => setIsOpen()}
+          onClick={setIsOpen}
           className="overlay"
         />
       </>,
