@@ -5,7 +5,6 @@ import './Cart.style.css';
 import delIcon from '../../Assets/delIcon.png';
 
 class Cart extends Component {
-
   render() {
     const {
       cart,
@@ -26,25 +25,22 @@ class Cart extends Component {
                 <h4 className="c-brand-name">{item.brand}</h4>
                 <h5 className="c-item-name">{item.name}</h5>
                 {item.prices.map(
-                  (price) => price.currency.symbol === symbol && (
-                  <div key={price.currency.symbol}>
-                    <p className="c-price">
-                      {price.currency.symbol}
-                      {price.amount}
-                    </p>
-                  </div>
-                  ),
+                  (price) =>
+                    price.currency.symbol === symbol && (
+                      <div key={price.currency.symbol}>
+                        <p className="c-price">
+                          {price.currency.symbol}
+                          {price.amount}
+                        </p>
+                      </div>
+                    ),
                 )}
                 <ul className="c-attributes-container">
                   {item.attributes.map((attribute) => (
                     <li key={attribute.id}>
-                      <h4>
-                        {attribute.name}
-                        :
-                      </h4>
+                      <h4>{attribute.name}:</h4>
                       {attribute.name === 'Color' ? (
                         <span
-                          htmlFor={attribute.id}
                           key={attribute.id}
                           style={{ backgroundColor: `${attribute.value}` }}
                           className="c-color-attribute"
@@ -79,14 +75,18 @@ class Cart extends Component {
                   </button>
                 </div>
                 <img src={item.gallery[0]} alt={item.name} />
-                <button
-                  className="mini-delete-icon"
-                  type="button"
-                  onClick={() => removeProductFromCart(item.cartId)}
-                >
-                  <img src={delIcon} alt="delete icon" />
-                </button>
               </div>
+              <button
+                className="c-delete-btn"
+                type="button"
+                onClick={() => removeProductFromCart(item.cartId)}
+              >
+                <img
+                  id="c-delete-icon"
+                  src={delIcon}
+                  alt="delete icon"
+                />
+              </button>
             </article>
           ))}
           <div className="c-tax-qty-total">

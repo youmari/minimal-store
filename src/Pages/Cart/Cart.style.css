@@ -9,6 +9,7 @@
 }
 
 .Cart-item {
+  position: relative;
   display: flex;
   justify-content: space-between;
   border-top: 1px solid gainsboro;
@@ -58,6 +59,28 @@
   padding: 0.7em 0;
 }
 
+.c-delete-btn {
+  position: absolute;
+  right: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #000;
+  cursor: pointer;
+}
+
+#c-delete-icon {
+  width: 28px;
+  height: 27px;
+}
+
+.Cart-item:hover .c-delete-btn {
+  display: flex;
+}
+
 .c-attributes-container {
   list-style-type: none;
 }
@@ -71,25 +94,6 @@
   margin: 0;
 }
 
-/* .c-other-attribute {
-  position: relative;
-  width: 63px;
-  height: 45px;
-  border: 1px solid #1D1F22;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  margin-right: 15px;
-}
-
-.c-other-attribute span {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 18px;
-} */
-
 .c-btns-and-img-con {
   display: flex;
   gap: 1em;
@@ -97,6 +101,7 @@
 
 .c-btns-and-img-con img {
   width: 200px;
+  object-fit: contain;
 }
 
 .c-btns-and-img-con div {
