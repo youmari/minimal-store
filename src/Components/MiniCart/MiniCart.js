@@ -17,6 +17,7 @@ class Minicart extends Component {
       cart,
       symbol,
       totalPrice,
+      numberOfItems,
       incrementAnItem,
       decrementAnItem,
       removeProductFromCart,
@@ -28,8 +29,8 @@ class Minicart extends Component {
             <strong>
               My Bag.
               {' '}
-              {cart.length}
-              {cart.length === 1 ? ' item' : ' items'}
+              {numberOfItems}
+              {numberOfItems === 1 ? ' item' : ' items'}
             </strong>
           </h3>
           <div className="items-container">
@@ -41,23 +42,33 @@ class Minicart extends Component {
                   {item.prices.map(
                     (price) => price.currency.symbol === symbol && (
                     <div key={price.currency.symbol}>
-                      <p>
+                      <p className="mini-cart-price">
                         {price.currency.symbol}
                         {price.amount}
                       </p>
                     </div>
                     ),
                   )}
-                  <div className="item-attributes-container">
+                  <ul className="item-attributes-container">
                     {item.attributes.map((attribute) => (
-                      <span
-                        key={attribute.value}
-                        className="mini-cart-attribute"
-                      >
-                        {attribute.value}
-                      </span>
+                      <li key={attribute.value}>
+                        <h3>
+                          {attribute.name}
+                          :
+                        </h3>
+                        {attribute.name === 'Color' ? (
+                          <div
+                            className="mini-cart-color-attribute"
+                            style={{ backgroundColor: `${attribute.value}` }}
+                          />
+                        ) : (
+                          <span className="mini-cart-attribute">
+                            {attribute.value}
+                          </span>
+                        )}
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
                 <div className="qty-bts-container">
                   <button
@@ -92,11 +103,16 @@ class Minicart extends Component {
             ))}
           </div>
           <div className="total-container">
-            <p>Total</p>
-            <p>{totalPrice}</p>
+            <p className="mini-cart-total">Total</p>
+            <p className="mini-cart-total-price">{totalPrice}</p>
           </div>
           <div className="mini-cart-action-btns-container">
-            <Link to="/Cart" type="button" onClick={setIsOpen} className="view-bag-btn">
+            <Link
+              to="/Cart"
+              type="button"
+              onClick={setIsOpen}
+              className="view-bag-btn"
+            >
               VIEW BAG
             </Link>
             <button type="button" className="checkout-btn">
@@ -104,11 +120,7 @@ class Minicart extends Component {
             </button>
           </div>
         </section>
-        <div
-          aria-hidden="true"
-          onClick={setIsOpen}
-          className="overlay"
-        />
+        <div aria-hidden="true" onClick={setIsOpen} className="overlay" />
       </>,
       document.getElementById('portal'),
     );

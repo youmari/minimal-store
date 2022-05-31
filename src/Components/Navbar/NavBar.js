@@ -77,6 +77,7 @@ class NavBar extends Component {
           {isOpen && (
           <Minicart
             totalPrice={totalPrice}
+            numberOfItems={numberOfItems}
             symbol={symbol}
             setIsOpen={this.setIsOpen}
           />
