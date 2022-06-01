@@ -1,0 +1,16 @@
+.pop-up-attributes {
+  position: fixed;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em;
+  z-index: 60;
+  background-color: #fff;
+}
+
+.pop-up-overlay {
+  top: 0;
+}

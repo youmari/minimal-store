@@ -18,6 +18,12 @@ export const queryGenerator = (category = 'all') => {
             }
             attributes {
               id
+              name
+              type
+              items {
+                id
+                value
+              }
             }
           }
         }

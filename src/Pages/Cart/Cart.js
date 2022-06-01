@@ -25,20 +25,22 @@ class Cart extends Component {
                 <h4 className="c-brand-name">{item.brand}</h4>
                 <h5 className="c-item-name">{item.name}</h5>
                 {item.prices.map(
-                  (price) =>
-                    price.currency.symbol === symbol && (
-                      <div key={price.currency.symbol}>
-                        <p className="c-price">
-                          {price.currency.symbol}
-                          {price.amount}
-                        </p>
-                      </div>
-                    ),
+                  (price) => price.currency.symbol === symbol && (
+                  <div key={price.currency.symbol}>
+                    <p className="c-price">
+                      {price.currency.symbol}
+                      {price.amount}
+                    </p>
+                  </div>
+                  ),
                 )}
                 <ul className="c-attributes-container">
                   {item.attributes.map((attribute) => (
                     <li key={attribute.id}>
-                      <h4>{attribute.name}:</h4>
+                      <h4>
+                        {attribute.name}
+                        :
+                      </h4>
                       {attribute.name === 'Color' ? (
                         <span
                           key={attribute.id}
