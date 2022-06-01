@@ -10,7 +10,7 @@ class ProductItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isThereAttributes: false,
+      // isThereAttributes: false,
       isOpen: false,
     };
   }
@@ -22,12 +22,13 @@ class ProductItem extends Component {
   handleAddProductToCart = (id) => {
     const {
       addProductToCart,
-      product: { attributes },
+      product: { attributes, inStock },
     } = this.props;
     if (attributes.length) {
-      this.setState({ isThereAttributes: true });
+      // this.setState({ isThereAttributes: true });
       return true;
     }
+    if (!inStock) return true;
     addProductToCart(id);
     return true;
   };
@@ -40,7 +41,7 @@ class ProductItem extends Component {
       },
       symbol,
     } = this.props;
-    const { isThereAttributes, isOpen } = this.state;
+    const { isOpen } = this.state;
     return (
       <>
         <article className="product-item" key={id}>
@@ -52,16 +53,9 @@ class ProductItem extends Component {
           >
             <Link to={id}>
               <img
-                style={{ width: 200, display: 'block' }} // I will remove it later
                 src={gallery[0]}
                 alt={name}
               />
-              {isThereAttributes && (
-                <strong style={{ color: 'red' }}>
-                  Please Click on the item and try to choose attributes then add
-                  it to the cart !
-                </strong>
-              )}
               <h4>{name}</h4>
             </Link>
             {prices.map(
@@ -76,7 +70,9 @@ class ProductItem extends Component {
           <button
             type="button"
             className="main-product-btn"
-            onClick={() => this.setState({ isOpen: true })}
+            onClick={() => (!attributes.length
+              ? this.handleAddProductToCart(id)
+              : this.setState({ isOpen: true }))}
           >
             <img src={whiteCartIcon} alt="cart" />
           </button>
