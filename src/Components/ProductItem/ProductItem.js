@@ -10,7 +10,6 @@ class ProductItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isThereAttributes: false,
       isOpen: false,
     };
   }
@@ -22,12 +21,8 @@ class ProductItem extends Component {
   handleAddProductToCart = (id) => {
     const {
       addProductToCart,
-      product: { attributes, inStock },
+      product: { inStock },
     } = this.props;
-    if (attributes.length) {
-      // this.setState({ isThereAttributes: true });
-      return true;
-    }
     if (!inStock) return true;
     addProductToCart(id);
     return true;
