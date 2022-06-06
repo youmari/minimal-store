@@ -30,11 +30,11 @@ Comming soon !
 ## To build the project 
     npm run build
     - next step :
-    ```zsh
+    ```WSL
     npm install -g serve
     ```
     - then: 
-    ```zsh
+    ```WSL
     serve -s build
     ```
 
