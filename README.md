@@ -30,9 +30,10 @@ Comming soon !
 ## To build the project 
     npm run build
  - next step:
+ ```Powershell
     npm install -g serve
     serve -s build
-
+ ```
 
 👤 **Youmari**
 
