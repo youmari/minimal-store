@@ -29,14 +29,9 @@ Comming soon !
 
 ## To build the project 
     npm run build
-    - next step :
-    ```WSL
+ - next step:
     npm install -g serve
-    ```
-    - then: 
-    ```WSL
     serve -s build
-    ```
 
 
 👤 **Youmari**
