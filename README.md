@@ -26,8 +26,18 @@ Comming soon !
     npm install
 ### Open the website in the browser
     npm start
+
 ## To build the project 
     npm run build
+    - next step :
+    ```zsh
+    npm install -g serve
+    ```
+    - then: 
+    ```zsh
+    serve -s build
+    ```
+
 
 👤 **Youmari**
 
