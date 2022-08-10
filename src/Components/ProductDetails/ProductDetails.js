@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactHtmlParser from 'react-html-parser';
+import parse from 'html-react-parser';
 import { connect } from 'react-redux';
 import { addProductToCart } from '../../Redux/Cart/cart';
 import Productattribute from '../ProductAttribute/ProductAttribute';
@@ -143,7 +143,7 @@ class Productdetails extends Component {
           >
             ADD TO CART
           </button>
-          <div>{ReactHtmlParser(description)}</div>
+          <div>{parse(description)}</div>
         </div>
       </section>
     );
