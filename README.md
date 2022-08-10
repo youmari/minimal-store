@@ -17,6 +17,7 @@ Comming soon !
 ## Getting Started
 
 ## To run the website locally follow the following steps:
+    - Make sure that you have `node 16.13.1` installed
 
 ### Clone the project to your local machine
     git clone git@github.com:youmari/minimal-store.git
