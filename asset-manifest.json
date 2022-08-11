@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/youmari/minimal-store/static/css/main.5a022eba.css",
+    "main.js": "/youmari/minimal-store/static/js/main.d403ab83.js",
+    "static/media/logo.svg": "/youmari/minimal-store/static/media/logo.d744ac57762637ce164fe1ff789d132b.svg",
+    "static/media/cartIcon.svg": "/youmari/minimal-store/static/media/cartIcon.dda1308fa7358772c63f3c584b677675.svg",
+    "static/media/whiteCartIcon.svg": "/youmari/minimal-store/static/media/whiteCartIcon.e964b7b6a8fdb83a05a9d9ebc4c34709.svg",
+    "index.html": "/youmari/minimal-store/index.html",
+    "main.5a022eba.css.map": "/youmari/minimal-store/static/css/main.5a022eba.css.map",
+    "main.d403ab83.js.map": "/youmari/minimal-store/static/js/main.d403ab83.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5a022eba.css",
+    "static/js/main.d403ab83.js"
+  ]
+}
