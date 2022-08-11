@@ -18,7 +18,7 @@ const cache = new InMemoryCache({
   },
 });
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/',
+  uri: 'https://minimal-react-store.herokuapp.com/',
   cache,
 });
 
